@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="theme-color" content="#1F3A6E">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="Cotizador oficial de Suministros Palominos. Solicita tu cotización de camisas outdoor Columbia, Maja y Mako.">
+
+<!-- Open Graph para preview en WhatsApp -->
+<meta property="og:title" content="Cotizador · Suministros Palominos">
+<meta property="og:description" content="Solicita tu cotización de camisas outdoor en línea. Columbia, Maja y Mako.">
+<meta property="og:type" content="website">
+
+<title>Cotizador · Suministros Palominos</title>
+<style>
+    :root {
+        --azul-sp: #1F3A6E;
+        --azul-profundo: #0F2143;
+        --azul-medio: #2E5A9F;
+        --dorado: #D4A73C;
+        --dorado-claro: #E8C65C;
+        --crema: #F4F1E8;
+        --crema-suave: #FAF7EA;
+        --gris-oscuro: #2C2C2C;
+        --gris-medio: #5A5A5A;
+        --gris-claro: #E8E6E1;
+        --gris-linea: #BDBDBD;
+        --rojo: #B83A32;
+        --verde: #2E7D4F;
+        --blanco: #FFFFFF;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+        font-size: 16px;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        background: var(--crema);
+        color: var(--gris-oscuro);
+        line-height: 1.4;
+        min-height: 100vh;
+        padding: 0;
+        margin: 0;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        background: #fff;
+        min-height: 100vh;
+    }
+
+    /* ══════════════════════════════
+       HEADER CORPORATIVO
+    ══════════════════════════════ */
+    .header {
+        background: linear-gradient(180deg, var(--azul-sp) 0%, var(--azul-profundo) 100%);
+        color: #fff;
+        padding: 20px 18px 18px;
+        position: relative;
+    }
+    .header::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--dorado-claro), var(--dorado));
+    }
+    .header-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    .brand {
+        flex: 1;
+        min-width: 0;
+    }
+    .brand-title {
+        font-size: 11px;
+        letter-spacing: 2.5px;
+        color: var(--dorado-claro);
+        font-weight: 700;
+    }
+    .brand-sub {
+        font-size: 20px;
+        font-weight: 700;
+        margin-top: 4px;
+        letter-spacing: 0.3px;
+        line-height: 1.15;
+    }
+    .folio {
+        text-align: right;
+        font-size: 9px;
+        color: var(--dorado-claro);
+        white-space: nowrap;
+    }
+    .folio-label {
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+    .folio-num {
+        font-size: 12px;
+        font-weight: 700;
+        color: #fff;
+        margin-top: 2px;
+        letter-spacing: 0.5px;
+    }
+    .folio-fecha {
+        margin-top: 3px;
+        font-size: 10px;
+    }
+
+    /* ══════════════════════════════
+       SECCIONES
+    ══════════════════════════════ */
+    .section {
+        padding: 20px 18px;
+        border-bottom: 1px solid var(--gris-claro);
+    }
+    .section:last-of-type { border-bottom: none; }
+
+    .section-title {
+        color: var(--azul-sp);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 1.8px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--dorado);
+        margin-bottom: 16px;
+        display: inline-block;
+    }
+
+    /* ══════════════════════════════
+       FORMULARIOS — MOBILE FIRST
+    ══════════════════════════════ */
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .field {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .field label {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--azul-sp);
+        letter-spacing: 0.6px;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+        font-family: inherit;
+        font-size: 16px; /* 16px evita zoom automático en iOS */
+        padding: 12px 14px;
+        border: 1.5px solid var(--gris-linea);
+        border-radius: 6px;
+        background: #fff;
+        color: var(--gris-oscuro);
+        width: 100%;
+        min-height: 44px; /* objetivo táctil mínimo 44px */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .field select {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231F3A6E'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 20px;
+        padding-right: 38px;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+        outline: none;
+        border-color: var(--azul-sp);
+        box-shadow: 0 0 0 3px rgba(31,58,110,0.12);
+    }
+
+    .field textarea {
+        resize: vertical;
+        min-height: 70px;
+        line-height: 1.4;
+    }
+
+    /* ══════════════════════════════
+       PARTIDAS
+    ══════════════════════════════ */
+    .partida {
+        background: var(--crema-suave);
+        border: 1px solid var(--gris-claro);
+        border-left: 4px solid var(--dorado);
+        border-radius: 6px;
+        padding: 16px 14px;
+        margin-bottom: 14px;
+    }
+
+    .partida-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 1px dashed var(--gris-linea);
+    }
+
+    .partida-num {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--azul-sp);
+        letter-spacing: 1.2px;
+    }
+
+    .btn-remove {
+        background: transparent;
+        border: 1.5px solid var(--rojo);
+        color: var(--rojo);
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 11px;
+        cursor: pointer;
+        font-weight: 700;
+        min-height: 36px;
+        letter-spacing: 0.3px;
+    }
+    .btn-remove:active {
+        background: var(--rojo);
+        color: #fff;
+    }
+
+    /* ══════════════════════════════
+       GRID DE TALLAS — MÓVIL
+    ══════════════════════════════ */
+    .tallas-wrap {
+        margin-top: 14px;
+    }
+    .tallas-label {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--azul-sp);
+        letter-spacing: 0.6px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+    }
+    .tallas-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+    }
+    .talla-field {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .talla-field label {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--azul-sp);
+        margin-bottom: 4px;
+        letter-spacing: 0.3px;
+    }
+    .talla-field input {
+        width: 100%;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 700;
+        padding: 10px 2px;
+        border: 1.5px solid var(--gris-linea);
+        border-radius: 5px;
+        background: #fff;
+        min-height: 42px;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+    .talla-field input:focus {
+        border-color: var(--azul-sp);
+        outline: none;
+    }
+
+    .partida-footer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 12px;
+        padding-top: 10px;
+        border-top: 1px dashed var(--gris-linea);
+    }
+    .partida-subtotal {
+        font-size: 12px;
+        color: var(--gris-medio);
+    }
+    .partida-subtotal strong {
+        color: var(--azul-sp);
+        font-size: 18px;
+        margin: 0 4px;
+    }
+
+    /* ══════════════════════════════
+       COLOR PICKER — MÓVIL
+    ══════════════════════════════ */
+    .color-picker {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        margin-top: 4px;
+    }
+    .color-swatch {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        padding: 6px 4px;
+        border-radius: 6px;
+        border: 2px solid transparent;
+        background: var(--blanco);
+        min-height: 60px;
+    }
+    .color-swatch:active,
+    .color-swatch.selected {
+        border-color: var(--azul-sp);
+        background: rgba(31,58,110,0.08);
+    }
+    .color-box {
+        width: 100%;
+        height: 32px;
+        border-radius: 4px;
+        border: 1px solid var(--gris-linea);
+        margin-bottom: 4px;
+    }
+    .color-name {
+        font-size: 10px;
+        color: var(--gris-oscuro);
+        text-align: center;
+        font-weight: 500;
+        line-height: 1.2;
+    }
+
+    /* ══════════════════════════════
+       BOTONES — TÁCTILES
+    ══════════════════════════════ */
+    .btn {
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 13px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        letter-spacing: 0.5px;
+        min-height: 48px;
+        width: 100%;
+        transition: transform 0.08s, background-color 0.15s;
+    }
+    .btn:active { transform: scale(0.98); }
+
+    .btn-primary {
+        background: var(--azul-sp);
+        color: #fff;
+    }
+    .btn-primary:active { background: var(--azul-profundo); }
+
+    .btn-secondary {
+        background: #fff;
+        color: var(--azul-sp);
+        border: 1.5px solid var(--azul-sp);
+    }
+    .btn-secondary:active { background: var(--crema); }
+
+    .btn-gold {
+        background: var(--dorado);
+        color: var(--azul-profundo);
+    }
+    .btn-gold:active { background: var(--dorado-claro); }
+
+    .btn-add {
+        background: var(--crema-suave);
+        color: var(--azul-sp);
+        border: 2px dashed var(--dorado);
+        margin-top: 6px;
+    }
+    .btn-add:active {
+        background: var(--dorado);
+        color: var(--azul-profundo);
+    }
+
+    .btn-row {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* ══════════════════════════════
+       RESUMEN — GRID MÓVIL 2x2
+    ══════════════════════════════ */
+    .resumen-wrap {
+        background: linear-gradient(135deg, var(--azul-sp) 0%, var(--azul-profundo) 100%);
+        color: #fff;
+        padding: 20px 16px;
+    }
+    .resumen {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .resumen-card {
+        text-align: center;
+        padding: 14px 10px;
+        background: rgba(255,255,255,0.08);
+        border-radius: 6px;
+        border-top: 3px solid var(--dorado);
+    }
+    .resumen-label {
+        font-size: 9.5px;
+        color: var(--dorado-claro);
+        letter-spacing: 1px;
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: 1.2;
+    }
+    .resumen-valor {
+        font-size: 26px;
+        font-weight: 700;
+        margin-top: 8px;
+        line-height: 1;
+    }
+    .resumen-valor.small {
+        font-size: 16px;
+        line-height: 1.2;
+    }
+
+    .discount-note {
+        background: var(--crema-suave);
+        border-left: 4px solid var(--verde);
+        padding: 12px 14px;
+        font-size: 12px;
+        color: var(--gris-oscuro);
+        margin-top: 14px;
+        border-radius: 4px;
+        line-height: 1.5;
+        display: none;
+    }
+    .discount-note.active { display: block; }
+    .discount-note strong { color: var(--verde); }
+
+    /* ══════════════════════════════
+       BOTÓN FLOTANTE WHATSAPP
+    ══════════════════════════════ */
+    .fab-whatsapp {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 56px;
+        height: 56px;
+        background: #25D366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        z-index: 100;
+        text-decoration: none;
+        color: white;
+        font-size: 28px;
+        transition: transform 0.2s;
+    }
+    .fab-whatsapp:active {
+        transform: scale(0.92);
+    }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    .footer {
+        background: var(--azul-profundo);
+        color: #fff;
+        padding: 16px 18px;
+        font-size: 10.5px;
+        text-align: center;
+        line-height: 1.5;
+    }
+    .footer strong { color: var(--dorado-claro); display: block; margin-bottom: 2px;}
+    .footer-meta { color: var(--dorado); font-size: 9.5px; margin-top: 4px;}
+
+    /* ══════════════════════════════
+       VISTA DE IMPRESIÓN
+    ══════════════════════════════ */
+    @media print {
+        body { background: #fff; padding: 0; }
+        .no-print { display: none !important; }
+        .container { box-shadow: none; max-width: 100%; }
+        .partida { page-break-inside: avoid; }
+        .section { padding: 12px 18px; }
+    }
+
+    /* ══════════════════════════════
+       RESPONSIVE — DESKTOP
+    ══════════════════════════════ */
+    @media (min-width: 640px) {
+        .header { padding: 24px 28px 22px; }
+        .brand-title { font-size: 12px; letter-spacing: 3px; }
+        .brand-sub { font-size: 24px; }
+        .folio { font-size: 11px; }
+        .folio-num { font-size: 14px; }
+
+        .section { padding: 24px 32px; }
+
+        .form-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px 20px;
+        }
+
+        .color-picker { grid-template-columns: repeat(5, 1fr); }
+
+        .resumen-wrap { padding: 24px 32px; }
+        .resumen {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+        .resumen-card { padding: 16px 12px; }
+        .resumen-valor { font-size: 28px; }
+
+        .btn-row {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .btn { width: auto; flex: 1; min-width: 180px; }
+
+        .partida { padding: 18px 20px; }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            text-align: left;
+            padding: 16px 32px;
+            font-size: 11px;
+        }
+        .footer strong { display: inline; margin-bottom: 0; }
+        .footer-meta { margin-top: 0; }
+    }
+
+    @media (min-width: 900px) {
+        body { padding: 20px; }
+        .container {
+            border-radius: 8px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            overflow: hidden;
+            min-height: auto;
+        }
+        .form-grid.cols-3-desktop { grid-template-columns: repeat(3, 1fr); }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ═════════ HEADER ═════════ -->
+    <div class="header">
+        <div class="header-top">
+            <div class="brand">
+                <div class="brand-title">SUMINISTROS PALOMINOS</div>
+                <div class="brand-sub">Cotizador · Camisas Outdoor</div>
+            </div>
+            <div class="folio">
+                <div class="folio-label">FOLIO</div>
+                <div class="folio-num" id="folio">SP-COT-000001</div>
+                <div class="folio-fecha" id="fecha"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═════════ DATOS DEL CLIENTE ═════════ -->
+    <div class="section">
+        <div class="section-title">DATOS DEL CLIENTE</div>
+        <div class="form-grid">
+            <div class="field">
+                <label>Empresa / Razón Social</label>
+                <input type="text" id="cli-empresa" placeholder="Nombre de la empresa" autocomplete="organization">
+            </div>
+            <div class="field">
+                <label>Contacto</label>
+                <input type="text" id="cli-contacto" placeholder="Nombre de la persona" autocomplete="name">
+            </div>
+            <div class="field">
+                <label>RFC</label>
+                <input type="text" id="cli-rfc" placeholder="RFC" style="text-transform:uppercase;">
+            </div>
+            <div class="field">
+                <label>Teléfono</label>
+                <input type="tel" id="cli-tel" placeholder="(662) 000-0000" autocomplete="tel">
+            </div>
+            <div class="field">
+                <label>Correo Electrónico</label>
+                <input type="email" id="cli-email" placeholder="contacto@empresa.com" autocomplete="email">
+            </div>
+            <div class="field">
+                <label>Ciudad / Estado</label>
+                <input type="text" id="cli-ciudad" placeholder="Hermosillo, Sonora">
+            </div>
+        </div>
+    </div>
+
+    <!-- ═════════ PARTIDAS ═════════ -->
+    <div class="section">
+        <div class="section-title">PARTIDAS DE LA COTIZACIÓN</div>
+        <div id="partidas-container"></div>
+        <button class="btn btn-add no-print" onclick="agregarPartida()">+ AGREGAR PARTIDA</button>
+    </div>
+
+    <!-- ═════════ PERSONALIZACIÓN ═════════ -->
+    <div class="section">
+        <div class="section-title">PERSONALIZACIÓN</div>
+        <div class="form-grid">
+            <div class="field">
+                <label>Tipo de Decorado</label>
+                <select id="decorado" onchange="actualizarResumen()">
+                    <option value="ninguno">Sin decorado</option>
+                    <option value="bordado">Bordado</option>
+                    <option value="estampado">Estampado (serigrafía)</option>
+                    <option value="dtf">Transfer DTF</option>
+                    <option value="sublimacion">Sublimación</option>
+                    <option value="mixto">Mixto (bordado + estampado)</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Ubicación del decorado</label>
+                <select id="decorado-ubicacion">
+                    <option value="">— Seleccione —</option>
+                    <option>Pecho frontal izquierdo</option>
+                    <option>Pecho frontal derecho</option>
+                    <option>Espalda completa</option>
+                    <option>Manga izquierda</option>
+                    <option>Manga derecha</option>
+                    <option>Pecho + espalda</option>
+                    <option>Personalizado (ver notas)</option>
+                </select>
+            </div>
+            <div class="field" style="grid-column: 1/-1;">
+                <label>Descripción del logo / diseño</label>
+                <textarea id="decorado-notas" placeholder="Ej. Logo corporativo a 3 tintas, 8cm de ancho."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═════════ ENTREGA ═════════ -->
+    <div class="section">
+        <div class="section-title">ENTREGA Y CONDICIONES</div>
+        <div class="form-grid">
+            <div class="field">
+                <label>Tiempo de Entrega Estimado</label>
+                <select id="entrega">
+                    <option>15 días hábiles</option>
+                    <option>20 días hábiles</option>
+                    <option>30 días hábiles</option>
+                    <option>Por confirmar</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Forma de Entrega</label>
+                <select id="forma-entrega">
+                    <option>Entrega en sucursal SP</option>
+                    <option>Envío a domicilio</option>
+                    <option>Recolección por cliente</option>
+                </select>
+            </div>
+            <div class="field" style="grid-column: 1/-1;">
+                <label>Observaciones Generales</label>
+                <textarea id="obs" placeholder="Notas adicionales, requerimientos especiales, referencias…"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═════════ RESUMEN ═════════ -->
+    <div class="resumen-wrap">
+        <div class="resumen">
+            <div class="resumen-card">
+                <div class="resumen-label">Partidas</div>
+                <div class="resumen-valor" id="r-partidas">0</div>
+            </div>
+            <div class="resumen-card">
+                <div class="resumen-label">Piezas Totales</div>
+                <div class="resumen-valor" id="r-total">0</div>
+            </div>
+            <div class="resumen-card">
+                <div class="resumen-label">Escala de Descuento</div>
+                <div class="resumen-valor small" id="r-escala">—</div>
+            </div>
+            <div class="resumen-card">
+                <div class="resumen-label">Nivel de Decorado</div>
+                <div class="resumen-valor small" id="r-decorado">Ninguno</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section no-print">
+        <div id="discount-note" class="discount-note"></div>
+        <div class="btn-row" style="margin-top: 14px;">
+            <button class="btn btn-primary" onclick="enviarWhatsApp()">📱 ENVIAR POR WHATSAPP</button>
+            <button class="btn btn-gold" onclick="window.print()">📄 IMPRIMIR / GUARDAR PDF</button>
+            <button class="btn btn-secondary" onclick="limpiarFormulario()">🗑 LIMPIAR FORMULARIO</button>
+        </div>
+    </div>
+
+    <!-- ═════════ FOOTER ═════════ -->
+    <div class="footer">
+        <div><strong>SUMINISTROS PALOMINOS S.A. DE C.V.</strong> Hermosillo, Sonora, México</div>
+        <div class="footer-meta">Cotización no vinculante · Sujeta a disponibilidad</div>
+    </div>
+
+</div>
+
+<!-- Botón flotante WhatsApp -->
+<a href="#" class="fab-whatsapp no-print" onclick="enviarWhatsApp(); return false;" aria-label="Enviar por WhatsApp">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+</a>
+
+<script>
+// ═══════════════════════════════════════════
+// DATOS
+// ═══════════════════════════════════════════
+const MODELOS = {
+    columbia: {
+        nombre: 'COLUMBIA',
+        sub: 'PFG Bahama™ II UPF 30',
+        colores: [
+            {n: 'Negro',        h: '#1A1A1A'},
+            {n: 'Blanco',       h: '#F5F5F2'},
+            {n: 'Azul Cielo',   h: '#6FA3D8'},
+            {n: 'Azul Marino',  h: '#1F3A6E'},
+            {n: 'Arena',        h: '#C8B896'},
+            {n: 'Azul Royal',   h: '#2A5CA8'},
+            {n: 'Azul Acero',   h: '#7FA6C7'},
+            {n: 'Verde Bosque', h: '#1E4A32'},
+            {n: 'Amarillo',     h: '#F2C83E'},
+            {n: 'Rojo',         h: '#B83A32'}
+        ]
+    },
+    maja: {
+        nombre: 'MAJA',
+        sub: 'Outdoor Signature UPF 50+',
+        colores: [
+            {n: 'Negro',        h: '#1A1A1A'},
+            {n: 'Blanco',       h: '#F5F5F2'},
+            {n: 'Azul Cielo',   h: '#6FA3D8'},
+            {n: 'Azul Marino',  h: '#1F3A6E'},
+            {n: 'Arena',        h: '#C8B896'},
+            {n: 'Azul Royal',   h: '#2A5CA8'},
+            {n: 'Azul Acero',   h: '#7FA6C7'},
+            {n: 'Verde Bosque', h: '#1E4A32'},
+            {n: 'Amarillo',     h: '#F2C83E'},
+            {n: 'Rojo',         h: '#B83A32'}
+        ]
+    },
+    mako: {
+        nombre: 'MAKO',
+        sub: 'Outdoor Performance Shirt',
+        colores: [
+            {n: 'Negro',        h: '#1A1A1A'},
+            {n: 'Blanco',       h: '#F5F5F2'},
+            {n: 'Gris Grafito', h: '#5A6770'},
+            {n: 'Arena',        h: '#C8B896'},
+            {n: 'Gris Perla',   h: '#9EA4AA'},
+            {n: 'Azul Cielo',   h: '#6FA3D8'},
+            {n: 'Azul Cobalto', h: '#3D6FA8'},
+            {n: 'Azul Royal',   h: '#2A5CA8'},
+            {n: 'Azul Marino',  h: '#1F3A6E'}
+        ]
+    }
+};
+
+const TALLAS = ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'];
+const GENEROS = ['Hombre', 'Mujer', 'Unisex'];
+
+const ESCALAS = [
+    {min: 1,    max: 24,    label: 'Venta individual'},
+    {min: 25,   max: 49,    label: 'Volumen básico'},
+    {min: 50,   max: 99,    label: 'Volumen medio'},
+    {min: 100,  max: 249,   label: 'Volumen alto'},
+    {min: 250,  max: 499,   label: 'Mayoreo'},
+    {min: 500,  max: 9999,  label: 'Alto mayoreo'}
+];
+
+// Teléfono de contacto por WhatsApp (editable)
+const TELEFONO_SP = '526620000000'; // formato internacional sin +
+
+let contador = 0;
+const partidas = [];
+
+document.addEventListener('DOMContentLoaded', () => {
+    generarFolio();
+    actualizarFecha();
+    agregarPartida();
+});
+
+function generarFolio() {
+    const d = new Date();
+    const num = String(Math.floor(Math.random() * 900000) + 100000);
+    document.getElementById('folio').textContent =
+        `SP-COT-${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}-${num}`;
+}
+
+function actualizarFecha() {
+    const d = new Date();
+    const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+    document.getElementById('fecha').textContent =
+        `${String(d.getDate()).padStart(2,'0')} ${meses[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+function agregarPartida() {
+    contador++;
+    const id = 'p' + contador;
+    const idx = partidas.length + 1;
+    partidas.push(id);
+
+    const cont = document.getElementById('partidas-container');
+    const div = document.createElement('div');
+    div.className = 'partida';
+    div.id = id;
+    div.innerHTML = `
+        <div class="partida-header">
+            <div class="partida-num">PARTIDA ${String(idx).padStart(2,'0')}</div>
+            <button class="btn-remove no-print" onclick="eliminarPartida('${id}')">ELIMINAR</button>
+        </div>
+        <div class="form-grid">
+            <div class="field">
+                <label>Modelo</label>
+                <select id="${id}-modelo" onchange="cambiarModelo('${id}')">
+                    <option value="columbia">Columbia · PFG Bahama II</option>
+                    <option value="maja">Maja · Outdoor Signature</option>
+                    <option value="mako">Mako · Performance Shirt</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Género</label>
+                <select id="${id}-genero">
+                    ${GENEROS.map(g => `<option>${g}</option>`).join('')}
+                </select>
+            </div>
+        </div>
+        <div class="field" style="margin-top:14px;">
+            <label>Color</label>
+            <div class="color-picker" id="${id}-colores"></div>
+            <input type="hidden" id="${id}-color" value="">
+        </div>
+        <div class="tallas-wrap">
+            <div class="tallas-label">Cantidades por Talla</div>
+            <div class="tallas-grid">
+                ${TALLAS.map(t => `
+                    <div class="talla-field">
+                        <label>${t}</label>
+                        <input type="number" inputmode="numeric" pattern="[0-9]*" min="0" value="0" id="${id}-t${t}" oninput="actualizarResumen()" onfocus="this.select()">
+                    </div>
+                `).join('')}
+            </div>
+            <div class="partida-footer">
+                <div class="partida-subtotal">
+                    Subtotal: <strong id="${id}-subtotal">0</strong> pzas
+                </div>
+            </div>
+        </div>
+    `;
+    cont.appendChild(div);
+    cambiarModelo(id);
+    actualizarResumen();
+
+    // Scroll suave al final
+    setTimeout(() => {
+        div.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+}
+
+function eliminarPartida(id) {
+    if (partidas.length === 1) {
+        alert('Debe mantener al menos una partida en la cotización.');
+        return;
+    }
+    document.getElementById(id).remove();
+    partidas.splice(partidas.indexOf(id), 1);
+    renumerarPartidas();
+    actualizarResumen();
+}
+
+function renumerarPartidas() {
+    partidas.forEach((id, i) => {
+        const numEl = document.querySelector(`#${id} .partida-num`);
+        if (numEl) numEl.textContent = `PARTIDA ${String(i+1).padStart(2,'0')}`;
+    });
+}
+
+function cambiarModelo(id) {
+    const modeloKey = document.getElementById(`${id}-modelo`).value;
+    const modelo = MODELOS[modeloKey];
+    const cont = document.getElementById(`${id}-colores`);
+    cont.innerHTML = modelo.colores.map((c, i) => `
+        <div class="color-swatch ${i === 0 ? 'selected' : ''}" onclick="seleccionarColor('${id}', this, '${c.n}')">
+            <div class="color-box" style="background:${c.h};"></div>
+            <div class="color-name">${c.n}</div>
+        </div>
+    `).join('');
+    document.getElementById(`${id}-color`).value = modelo.colores[0].n;
+}
+
+function seleccionarColor(id, el, nombre) {
+    document.querySelectorAll(`#${id}-colores .color-swatch`).forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById(`${id}-color`).value = nombre;
+}
+
+function actualizarResumen() {
+    let totalPiezas = 0;
+
+    partidas.forEach(id => {
+        let subtotal = 0;
+        TALLAS.forEach(t => {
+            const el = document.getElementById(`${id}-t${t}`);
+            if (el) subtotal += parseInt(el.value) || 0;
+        });
+        const sub = document.getElementById(`${id}-subtotal`);
+        if (sub) sub.textContent = subtotal;
+        totalPiezas += subtotal;
+    });
+
+    document.getElementById('r-partidas').textContent = partidas.length;
+    document.getElementById('r-total').textContent = totalPiezas;
+
+    const escala = ESCALAS.find(e => totalPiezas >= e.min && totalPiezas <= e.max);
+    const escalaEl = document.getElementById('r-escala');
+    const noteEl = document.getElementById('discount-note');
+
+    if (totalPiezas === 0) {
+        escalaEl.textContent = '—';
+        noteEl.classList.remove('active');
+    } else {
+        escalaEl.textContent = escala.label;
+        const proxima = ESCALAS.find(e => e.min > totalPiezas);
+        if (proxima) {
+            const faltan = proxima.min - totalPiezas;
+            noteEl.innerHTML = `<strong>💡 Oportunidad:</strong> Con <strong>${faltan} pieza${faltan !== 1 ? 's' : ''}</strong> adicional${faltan !== 1 ? 'es' : ''}, alcanzas la escala <strong>${proxima.label}</strong>.`;
+            noteEl.classList.add('active');
+        } else {
+            noteEl.innerHTML = `<strong>⭐ Has alcanzado la escala más alta:</strong> Consulta las mejores condiciones de alto mayoreo.`;
+            noteEl.classList.add('active');
+        }
+    }
+
+    const dec = document.getElementById('decorado');
+    const decMap = {
+        'ninguno': 'Ninguno',
+        'bordado': 'Bordado',
+        'estampado': 'Estampado',
+        'dtf': 'Transfer DTF',
+        'sublimacion': 'Sublimación',
+        'mixto': 'Mixto'
+    };
+    document.getElementById('r-decorado').textContent = decMap[dec.value] || 'Ninguno';
+}
+
+// ═══════════════════════════════════════════
+// ENVIAR POR WHATSAPP
+// ═══════════════════════════════════════════
+function enviarWhatsApp() {
+    const empresa = document.getElementById('cli-empresa').value || '—';
+    const contacto = document.getElementById('cli-contacto').value || '—';
+    const tel = document.getElementById('cli-tel').value || '—';
+    const email = document.getElementById('cli-email').value || '—';
+    const ciudad = document.getElementById('cli-ciudad').value || '—';
+    const folio = document.getElementById('folio').textContent;
+
+    let msg = `*COTIZACIÓN · SUMINISTROS PALOMINOS*\n`;
+    msg += `Folio: ${folio}\n\n`;
+    msg += `*DATOS DEL CLIENTE*\n`;
+    msg += `Empresa: ${empresa}\n`;
+    msg += `Contacto: ${contacto}\n`;
+    msg += `Tel: ${tel}\n`;
+    msg += `Email: ${email}\n`;
+    msg += `Ciudad: ${ciudad}\n\n`;
+    msg += `*PARTIDAS*\n`;
+
+    let total = 0;
+    partidas.forEach((id, i) => {
+        const modelo = MODELOS[document.getElementById(`${id}-modelo`).value].nombre;
+        const genero = document.getElementById(`${id}-genero`).value;
+        const color = document.getElementById(`${id}-color`).value;
+        let subtotal = 0;
+        const tallas = [];
+        TALLAS.forEach(t => {
+            const cant = parseInt(document.getElementById(`${id}-t${t}`).value) || 0;
+            if (cant > 0) tallas.push(`${t}:${cant}`);
+            subtotal += cant;
+        });
+        total += subtotal;
+        msg += `\n${i+1}. *${modelo}* ${genero} · ${color}\n`;
+        msg += `   ${tallas.join(' · ') || 'Sin cantidades'}\n`;
+        msg += `   Subtotal: ${subtotal} pzas\n`;
+    });
+
+    msg += `\n*TOTAL: ${total} piezas*\n`;
+
+    const dec = document.getElementById('decorado').value;
+    if (dec !== 'ninguno') {
+        const decMap = {bordado:'Bordado', estampado:'Estampado', dtf:'DTF', sublimacion:'Sublimación', mixto:'Mixto'};
+        msg += `\n*Decorado:* ${decMap[dec]}\n`;
+        const ub = document.getElementById('decorado-ubicacion').value;
+        if (ub) msg += `Ubicación: ${ub}\n`;
+        const notas = document.getElementById('decorado-notas').value;
+        if (notas) msg += `Notas: ${notas}\n`;
+    }
+
+    const obs = document.getElementById('obs').value;
+    if (obs) msg += `\n*Observaciones:* ${obs}\n`;
+
+    msg += `\n_Enviado desde el cotizador oficial SP_`;
+
+    const url = `https://wa.me/${TELEFONO_SP}?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+}
+
+function limpiarFormulario() {
+    if (!confirm('¿Desea limpiar todo el formulario?')) return;
+    ['cli-empresa','cli-contacto','cli-rfc','cli-tel','cli-email','cli-ciudad','decorado-notas','obs']
+        .forEach(id => document.getElementById(id).value = '');
+    document.getElementById('decorado').value = 'ninguno';
+    document.getElementById('decorado-ubicacion').value = '';
+    document.getElementById('partidas-container').innerHTML = '';
+    partidas.length = 0;
+    contador = 0;
+    generarFolio();
+    agregarPartida();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
